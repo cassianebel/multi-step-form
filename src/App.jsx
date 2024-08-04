@@ -3,7 +3,6 @@ import BasicInfo from "./components/BasicInfo";
 import TshirtInfo from "./components/TshirtInfo";
 import RegisterActivities from "./components/RegisterActivities";
 import PaymentInfo from "./components/PaymentInfo";
-import "./App.css";
 
 function App() {
   const [formData, setFormData] = useState({
@@ -22,6 +21,8 @@ function App() {
     buildTools: false,
     npm: false,
     paymentType: "",
+    expMonth: "",
+    expYear: "",
     ccNum: "",
     zip: "",
     cvv: "",
@@ -52,15 +53,27 @@ function App() {
         <PaymentInfo formData={formData} setFormData={setFormData} />
       )}
 
-      <button type="button" onClick={handlePrevious} hidden={currentStep === 1}>
-        Previous
-      </button>
-      <button type="button" onClick={handleNext} hidden={currentStep === 4}>
-        Next
-      </button>
-      <button type="submit" hidden={currentStep !== 4}>
-        Submit
-      </button>
+      <div className="nav-buttons">
+        <button
+          className="previous"
+          type="button"
+          onClick={handlePrevious}
+          hidden={currentStep === 1}
+        >
+          Previous
+        </button>
+        <button
+          className="next"
+          type="button"
+          onClick={handleNext}
+          hidden={currentStep === 4}
+        >
+          Next
+        </button>
+        <button className="submit" type="submit" hidden={currentStep !== 4}>
+          Submit
+        </button>
+      </div>
     </>
   );
 }

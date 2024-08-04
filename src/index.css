@@ -1,68 +1,152 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  box-sizing: border-box;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  font-size: 1rem;
 }
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
+  padding: 0;
   margin: 0;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
   display: flex;
-  place-items: center;
-  min-width: 320px;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
+  background-color: #f0f0f5;
+  color: #333;
 }
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+fieldset {
+  width: 100%;
+  border: none;
+  padding: 20px 0;
+  margin: 0;
 }
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+legend {
+  width: 100%;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+label {
+  display: block;
+  margin: 20px 0 5px 10px;
+}
+input,
+textarea {
+  width: 100%;
+  display: block;
+  margin-bottom: 5px;
+  border: 1px solid #d7d7d7;
+  border-radius: 11px;
+  padding: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  background-color: #fff;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+select {
+  display: block;
+  margin-bottom: 5px;
+  border: 1px solid #d7d7d7;
+  border-radius: 11px;
+  padding: 10px 40px 10px 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+  background-color: #fff;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.select-arrow {
+  position: relative;
+  display: inline-block;
+}
+.select-arrow .fa-angle-down {
+  position: absolute;
+  right: 15px;
+  top: 46%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #333;
+}
+#root {
+  width: 100%;
+  max-width: 400px;
+  margin: 20px;
+}
+.hint {
+  visibility: hidden;
+  margin-left: 10px;
+  font-size: 0.9rem;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.nav-buttons button {
+  flex-basis: 30%;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #343434;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.nav-buttons button:hover {
+  background-color: #000;
+}
+.nav-buttons button.next {
+  margin-left: auto;
+}
+.nav-buttons button.submit {
+  background-color: #2ecc71;
+  color: #343434;
+}
+
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+.custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+.checkbox-mark {
+  flex-shrink: 0;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #d7d7d7;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s;
+}
+.custom-checkbox .fa-check {
+  position: absolute;
+  z-index: 1;
+  color: #fff;
+  font-size: 1.1rem;
+  left: 4px;
+}
+.custom-checkbox input:checked + .checkbox-mark {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+.custom-checkbox input:focus + .checkbox-mark {
+  box-shadow: 0 0 3px 2px rgba(0, 123, 255, 0.25); /* Focus outline */
 }

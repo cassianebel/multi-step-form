@@ -8,7 +8,8 @@ const RegisterActivities = ({ formData, setFormData }) => {
       </legend>
 
       <div id="activities-box" className="activities-box error-border">
-        <label>
+        <label className="custom-checkbox">
+          <i className="fa-solid fa-check"></i>
           <input
             type="checkbox"
             name="all"
@@ -18,12 +19,14 @@ const RegisterActivities = ({ formData, setFormData }) => {
             }
             checked={formData.main}
           />
+          <span className="checkbox-mark"></span>
           <span>Main Conference</span>
           <span className="activity-cost">$200</span>
           <img className="activity-img js-img" src="img/js.svg" alt="" />
         </label>
 
-        <label>
+        <label className="custom-checkbox">
+          <i className="fa-solid fa-check"></i>
           <input
             type="checkbox"
             name="js-libs"
@@ -34,13 +37,15 @@ const RegisterActivities = ({ formData, setFormData }) => {
             }
             checked={formData.libraries}
           />
+          <span className="checkbox-mark"></span>
           <span>JavaScript Libraries Workshop</span>
           <span>Tuesday 9am-12pm</span>
           <span className="activity-cost">$100</span>
           <img className="activity-img react-img" src="img/react.svg" alt="" />
         </label>
 
-        <label>
+        <label className="custom-checkbox">
+          <i className="fa-solid fa-check"></i>
           <input
             type="checkbox"
             name="node"
@@ -51,13 +56,15 @@ const RegisterActivities = ({ formData, setFormData }) => {
             }
             checked={formData.node}
           />
+          <span className="checkbox-mark"></span>
           <span>Node.js Workshop</span>
           <span>Tuesday 1pm-4pm</span>
           <span className="activity-cost">$100</span>
           <img className="activity-img node-img" src="img/node.svg" alt="" />
         </label>
 
-        <label>
+        <label className="custom-checkbox">
+          <i className="fa-solid fa-check"></i>
           <input
             type="checkbox"
             name="js-frameworks"
@@ -68,6 +75,7 @@ const RegisterActivities = ({ formData, setFormData }) => {
             }
             checked={formData.frameworks}
           />
+          <span className="checkbox-mark"></span>
           <span>JavaScript Frameworks Workshop</span>
           <span>Tuesday 9am-12pm</span>
           <span className="activity-cost">$100</span>
@@ -78,7 +86,8 @@ const RegisterActivities = ({ formData, setFormData }) => {
           />
         </label>
 
-        <label>
+        <label className="custom-checkbox">
+          <i className="fa-solid fa-check"></i>
           <input
             type="checkbox"
             name="build-tools"
@@ -89,13 +98,15 @@ const RegisterActivities = ({ formData, setFormData }) => {
             }
             checked={formData.buildTools}
           />
+          <span className="checkbox-mark"></span>
           <span>Build tools Workshop</span>
           <span>Tuesday 1pm-4pm</span>
           <span className="activity-cost">$100</span>
           <img className="activity-img build-img" src="img/build.svg" alt="" />
         </label>
 
-        <label>
+        <label className="custom-checkbox">
+          <i className="fa-solid fa-check"></i>
           <input
             type="checkbox"
             name="npm"
@@ -106,13 +117,15 @@ const RegisterActivities = ({ formData, setFormData }) => {
             }
             checked={formData.npm}
           />
+          <span className="checkbox-mark"></span>
           <span>npm Workshop</span>
           <span>Wednesday 9am-12pm</span>
           <span className="activity-cost">$100</span>
           <img className="activity-img npm-img" src="img/npm.svg" alt="" />
         </label>
 
-        <label>
+        <label className="custom-checkbox">
+          <i className="fa-solid fa-check"></i>
           <input
             type="checkbox"
             name="express"
@@ -123,6 +136,7 @@ const RegisterActivities = ({ formData, setFormData }) => {
             }
             checked={formData.express}
           />
+          <span className="checkbox-mark"></span>
           <span>Express Workshop</span>
           <span>Wednesday 1pm-4pm</span>
           <span className="activity-cost">$100</span>
