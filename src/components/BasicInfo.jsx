@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { motion, AnimatePresence } from "framer-motion";
 
 const PersonInfo = ({ formData, setFormData }) => {
   return (
@@ -56,19 +57,35 @@ const PersonInfo = ({ formData, setFormData }) => {
         <i className="fa-solid fa-angle-down"></i>
       </div>
 
-      <div id="other-job">
-        <label htmlFor="other-job-role">Other Job Role</label>
-        <input
-          type="text"
-          name="other-job-role"
-          id="other-job-role"
-          className="other-job-role"
-          onChange={(e) =>
-            setFormData({ ...formData, otherJob: e.target.value })
-          }
-          value={formData.otherJob}
-        />
-      </div>
+      <AnimatePresence>
+        {formData.title === "other" && (
+          <motion.div
+            key="content"
+            initial="collapsed"
+            animate="open"
+            exit="collapsed"
+            variants={{
+              open: { opacity: 1, height: "auto" },
+              collapsed: { opacity: 0, height: 0 },
+            }}
+            transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.69] }}
+          >
+            <div id="other-job">
+              <label htmlFor="other-job-role">Other Job Role</label>
+              <input
+                type="text"
+                name="other-job-role"
+                id="other-job-role"
+                className="other-job-role"
+                onChange={(e) =>
+                  setFormData({ ...formData, otherJob: e.target.value })
+                }
+                value={formData.otherJob}
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </fieldset>
   );
 };
