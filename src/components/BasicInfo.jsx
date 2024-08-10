@@ -6,9 +6,7 @@ const PersonInfo = ({ formData, setFormData }) => {
     <fieldset className="basic-info">
       <legend>Basic Info</legend>
 
-      <label htmlFor="name">
-        Name <span className="asterisk">*</span>
-      </label>
+      <label htmlFor="name">Name</label>
       <input
         type="text"
         id="name"
@@ -21,9 +19,7 @@ const PersonInfo = ({ formData, setFormData }) => {
         Name field cannot be blank
       </span>
 
-      <label htmlFor="email">
-        Email Address <span className="asterisk">*</span>
-      </label>
+      <label htmlFor="email">Email Address</label>
       <input
         type="email"
         id="email"

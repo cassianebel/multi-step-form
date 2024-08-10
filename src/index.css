@@ -142,13 +142,14 @@ select {
 }
 .nav-buttons button.submit:focus-visible {
   outline: var(--shark-950) auto 0px;
-  box-shadow: 0 0 2px 2px var(--shark-950);
+  box-shadow: 0 0 1px 2px var(--shark-950);
 }
 .custom-checkbox {
   display: flex;
   align-items: center;
   cursor: pointer;
   position: relative;
+  margin: 30px 0;
 }
 .custom-checkbox input {
   position: absolute;
@@ -183,9 +184,24 @@ select {
   border-color: var(--electric-violet-800);
 }
 .custom-checkbox input:focus + .checkbox-mark {
-  box-shadow: 0 0 2px 2px var(--electric-violet-600);
+  box-shadow: 0 0 1px 2px var(--electric-violet-600);
 }
 :focus-visible {
   outline: var(--electric-violet-600) auto 0px;
-  box-shadow: 0 0 2px 2px var(--electric-violet-600);
+  box-shadow: 0 0 1px 2px var(--electric-violet-600);
+}
+.custom-checkbox .label {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.activity-title span:first-child {
+  font-weight: 500;
+}
+#activities-cost {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-top: 40px;
+  text-align: center;
 }

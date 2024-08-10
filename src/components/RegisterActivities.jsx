@@ -1,11 +1,25 @@
 import PropTypes from "prop-types";
 
 const RegisterActivities = ({ formData, setFormData }) => {
+  const updateTotalCost = () => {
+    let totalCost = 0;
+    const checkboxes = document.querySelectorAll("#activities-box input");
+    checkboxes.forEach((checkbox) => {
+      if (checkbox.checked) {
+        totalCost += parseInt(checkbox.dataset.cost);
+      }
+    });
+    document.getElementById("activities-cost").textContent =
+      `Total: $${totalCost}`;
+  };
+
   return (
-    <fieldset id="activities" className="activities">
-      <legend>
-        Register for Activities <span className="asterisk">*</span>
-      </legend>
+    <fieldset
+      id="activities"
+      className="activities"
+      onChange={() => updateTotalCost()}
+    >
+      <legend>Register for Activities</legend>
 
       <div id="activities-box" className="activities-box error-border">
         <label className="custom-checkbox">
@@ -20,9 +34,14 @@ const RegisterActivities = ({ formData, setFormData }) => {
             checked={formData.main}
           />
           <span className="checkbox-mark"></span>
-          <span>Main Conference</span>
-          <span className="activity-cost">$200</span>
-          <img className="activity-img js-img" src="img/js.svg" alt="" />
+          <div className="label">
+            <div className="activity-title">
+              <span>Main Conference</span>
+            </div>
+            <div className="activity-time-cost">
+              <span className="activity-cost">$200</span>
+            </div>
+          </div>
         </label>
 
         <label className="custom-checkbox">
@@ -38,10 +57,16 @@ const RegisterActivities = ({ formData, setFormData }) => {
             checked={formData.libraries}
           />
           <span className="checkbox-mark"></span>
-          <span>JavaScript Libraries Workshop</span>
-          <span>Tuesday 9am-12pm</span>
-          <span className="activity-cost">$100</span>
-          <img className="activity-img react-img" src="img/react.svg" alt="" />
+          <div className="label">
+            <div className="activity-title">
+              <span>JavaScript Libraries Workshop</span>
+              <br />
+              <span>Tuesday 9am-12pm</span>
+            </div>
+            <div className="activity-time-cost">
+              <span className="activity-cost">$100</span>
+            </div>
+          </div>
         </label>
 
         <label className="custom-checkbox">
@@ -57,10 +82,16 @@ const RegisterActivities = ({ formData, setFormData }) => {
             checked={formData.node}
           />
           <span className="checkbox-mark"></span>
-          <span>Node.js Workshop</span>
-          <span>Tuesday 1pm-4pm</span>
-          <span className="activity-cost">$100</span>
-          <img className="activity-img node-img" src="img/node.svg" alt="" />
+          <div className="label">
+            <div className="activity-title">
+              <span>Node.js Workshop</span>
+              <br />
+              <span>Tuesday 1pm-4pm</span>
+            </div>
+            <div className="activity-time-cost">
+              <span className="activity-cost">$100</span>
+            </div>
+          </div>
         </label>
 
         <label className="custom-checkbox">
@@ -76,14 +107,16 @@ const RegisterActivities = ({ formData, setFormData }) => {
             checked={formData.frameworks}
           />
           <span className="checkbox-mark"></span>
-          <span>JavaScript Frameworks Workshop</span>
-          <span>Tuesday 9am-12pm</span>
-          <span className="activity-cost">$100</span>
-          <img
-            className="activity-img angular-img"
-            src="img/angular.svg"
-            alt=""
-          />
+          <div className="label">
+            <div className="activity-title">
+              <span>JavaScript Frameworks Workshop</span>
+              <br />
+              <span>Tuesday 9am-12pm</span>
+            </div>
+            <div className="activity-time-cost">
+              <span className="activity-cost">$100</span>
+            </div>
+          </div>
         </label>
 
         <label className="custom-checkbox">
@@ -99,10 +132,16 @@ const RegisterActivities = ({ formData, setFormData }) => {
             checked={formData.buildTools}
           />
           <span className="checkbox-mark"></span>
-          <span>Build tools Workshop</span>
-          <span>Tuesday 1pm-4pm</span>
-          <span className="activity-cost">$100</span>
-          <img className="activity-img build-img" src="img/build.svg" alt="" />
+          <div className="label">
+            <div className="activity-title">
+              <span>Build tools Workshop</span>
+              <br />
+              <span>Tuesday 1pm-4pm</span>
+            </div>
+            <div className="activity-time-cost">
+              <span className="activity-cost">$100</span>
+            </div>
+          </div>
         </label>
 
         <label className="custom-checkbox">
@@ -118,10 +157,16 @@ const RegisterActivities = ({ formData, setFormData }) => {
             checked={formData.npm}
           />
           <span className="checkbox-mark"></span>
-          <span>npm Workshop</span>
-          <span>Wednesday 9am-12pm</span>
-          <span className="activity-cost">$100</span>
-          <img className="activity-img npm-img" src="img/npm.svg" alt="" />
+          <div className="label">
+            <div className="activity-title">
+              <span>npm Workshop</span>
+              <br />
+              <span>Wednesday 9am-12pm</span>
+            </div>
+            <div className="activity-time-cost">
+              <span className="activity-cost">$100</span>
+            </div>
+          </div>
         </label>
 
         <label className="custom-checkbox">
@@ -137,14 +182,16 @@ const RegisterActivities = ({ formData, setFormData }) => {
             checked={formData.express}
           />
           <span className="checkbox-mark"></span>
-          <span>Express Workshop</span>
-          <span>Wednesday 1pm-4pm</span>
-          <span className="activity-cost">$100</span>
-          <img
-            className="activity-img express-img"
-            src="img/express.svg"
-            alt=""
-          />
+          <div className="label">
+            <div className="activity-title">
+              <span>Express Workshop</span>
+              <br />
+              <span>Wednesday 1pm-4pm</span>
+            </div>
+            <div className="activity-time-cost">
+              <span className="activity-cost">$100</span>
+            </div>
+          </div>
         </label>
       </div>
       <p id="activities-cost" className="activities-cost">

@@ -55,24 +55,49 @@ const TshirtInfo = ({ formData, setFormData }) => {
                 setFormData({ ...formData, color: e.target.value })
               }
               value={formData.color}
+              disabled={formData.design === "Select Theme"}
             >
               <option defaultValue>Select a design theme above</option>
-              <option data-theme="js puns" value="cornflowerblue">
+              <option
+                data-theme="js puns"
+                value="cornflowerblue"
+                hidden={formData.design === "heart js"}
+              >
                 Cornflower Blue (JS Puns shirt only)
               </option>
-              <option data-theme="js puns" value="darkslategrey">
+              <option
+                data-theme="js puns"
+                value="darkslategrey"
+                hidden={formData.design === "heart js"}
+              >
                 Dark Slate Grey (JS Puns shirt only)
               </option>
-              <option data-theme="js puns" value="gold">
+              <option
+                data-theme="js puns"
+                value="gold"
+                hidden={formData.design === "heart js"}
+              >
                 Gold (JS Puns shirt only)
               </option>
-              <option data-theme="heart js" value="tomato">
+              <option
+                data-theme="heart js"
+                value="tomato"
+                hidden={formData.design === "js puns"}
+              >
                 Tomato (I ♥ JS shirt only)
               </option>
-              <option data-theme="heart js" value="steelblue">
+              <option
+                data-theme="heart js"
+                value="steelblue"
+                hidden={formData.design === "js puns"}
+              >
                 Steel Blue (I ♥ JS shirt only)
               </option>
-              <option data-theme="heart js" value="dimgrey">
+              <option
+                data-theme="heart js"
+                value="dimgrey"
+                hidden={formData.design === "js puns"}
+              >
                 Dim Grey (I ♥ JS shirt only)
               </option>
             </select>
