@@ -65,17 +65,41 @@ const RegisterActivities = ({ formData, setFormData }) => {
   const handleChange = (index) => {
     const updatedActivities = [...activities];
     updatedActivities[index].checked = !updatedActivities[index].checked;
-    setActivities(updatedActivities);
+
+    // Update form data
     setFormData({
       ...formData,
       [updatedActivities[index].name]: updatedActivities[index].checked,
     });
 
+    // Calculate new total cost
     const newTotal = updatedActivities.reduce(
       (sum, activity) => (activity.checked ? sum + activity.cost : sum),
       0
     );
     setTotal(newTotal);
+
+    // Handle disabling conflicting activities
+    const selectedTime = updatedActivities[index].time;
+
+    // If the activity is now checked, disable others with the same time
+    if (updatedActivities[index].checked) {
+      updatedActivities.forEach((activity, i) => {
+        if (activity.time === selectedTime && i !== index) {
+          activity.disabled = true;
+        }
+      });
+    } else {
+      // If the activity is now unchecked, re-enable others with the same time
+      updatedActivities.forEach((activity, i) => {
+        if (activity.time === selectedTime && i !== index) {
+          activity.disabled = false;
+        }
+      });
+    }
+
+    // Update the activities state
+    setActivities(updatedActivities);
   };
 
   return (
@@ -85,13 +109,13 @@ const RegisterActivities = ({ formData, setFormData }) => {
       <div id="activities-box" className="activities-box error-border">
         {activities.map((activity, index) => (
           <label
-            className="custom-checkbox"
+            className={`custom-checkbox ${activity.disabled ? "disabled" : ""}`}
             key={activity.name}
-            htmlFor={activity.name} // Update this to match the input id
+            htmlFor={activity.name}
           >
             <i className="fa-solid fa-check"></i>
             <input
-              id={activity.name} // Add an id that matches the label's htmlFor
+              id={activity.name}
               type="checkbox"
               name={activity.name}
               data-day-and-time={activity.time}
