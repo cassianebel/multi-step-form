@@ -5,15 +5,7 @@ import TshirtInfo from "./components/TshirtInfo";
 import RegisterActivities from "./components/RegisterActivities";
 import PaymentInfo from "./components/PaymentInfo";
 
-const tabs = [
-  { label: "BasicInfo", icon: "🪪", step: 1 },
-  { label: "TshirtInfo", icon: "👕", step: 2 },
-  { label: "RegisterActivities", icon: "🎟️", step: 3 },
-  { label: "PaymentInfo", icon: "💳", step: 4 },
-];
-
 function App() {
-  const [selectedTab, setSelectedTab] = useState(tabs[0]);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -37,6 +29,64 @@ function App() {
     cvv: "",
     payment: "",
   });
+  const [activities, setActivities] = useState([
+    {
+      name: "main",
+      time: "",
+      cost: 200,
+      title: "Main Conference",
+      checked: false,
+      disabled: false,
+    },
+    {
+      name: "frameworks",
+      time: "Tuesday 9am-12pm",
+      cost: 100,
+      title: "JavaScript Frameworks Workshop",
+      checked: false,
+      disabled: false,
+    },
+    {
+      name: "libraries",
+      time: "Tuesday 1pm-4pm",
+      cost: 100,
+      title: "JavaScript Libraries Workshop",
+      checked: false,
+      disabled: false,
+    },
+    {
+      name: "express",
+      time: "Tuesday 9am-12pm",
+      cost: 100,
+      title: "Express Workshop",
+      checked: false,
+      disabled: false,
+    },
+    {
+      name: "node",
+      time: "Tuesday 1pm-4pm",
+      cost: 100,
+      title: "Node.js Workshop",
+      checked: false,
+      disabled: false,
+    },
+    {
+      name: "buildTools",
+      time: "Wednesday 9am-12pm",
+      cost: 100,
+      title: "Build tools Workshop",
+      checked: false,
+      disabled: false,
+    },
+    {
+      name: "npm",
+      time: "Wednesday 1pm-4pm",
+      cost: 100,
+      title: "npm Workshop",
+      checked: false,
+      disabled: false,
+    },
+  ]);
   const [currentStep, setCurrentStep] = useState(1);
 
   const handleNext = () => {
@@ -49,49 +99,6 @@ function App() {
 
   return (
     <>
-      {/* <nav>
-        <ul>
-          {tabs.map((item) => (
-            <li
-              key={item.label}
-              className={item === selectedTab ? "selected" : ""}
-              onClick={() => setSelectedTab(item)}
-            >
-              {`${item.icon}`}
-              {item === selectedTab ? (
-                <motion.div className="underline" layoutId="underline" />
-              ) : null}
-            </li>
-          ))}
-        </ul>
-      </nav> */}
-      {/* <main>
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={selectedTab ? selectedTab.label : "empty"}
-            initial={{ y: 10, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -10, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            {selectedTab.label === "BasicInfo" && (
-              <BasicInfo formData={formData} setFormData={setFormData} />
-            )}
-            {selectedTab.label === "TshirtInfo" && (
-              <TshirtInfo formData={formData} setFormData={setFormData} />
-            )}
-            {selectedTab.label === "RegisterActivities" && (
-              <RegisterActivities
-                formData={formData}
-                setFormData={setFormData}
-              />
-            )}
-            {selectedTab.label === "PaymentInfo" && (
-              <PaymentInfo formData={formData} setFormData={setFormData} />
-            )}
-          </motion.div>
-        </AnimatePresence>
-      </main> */}
       <main>
         <AnimatePresence mode="wait">
           <motion.div
@@ -111,6 +118,8 @@ function App() {
               <RegisterActivities
                 formData={formData}
                 setFormData={setFormData}
+                activities={activities}
+                setActivities={setActivities}
               />
             )}
             {currentStep === 4 && (

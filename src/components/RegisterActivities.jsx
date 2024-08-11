@@ -1,66 +1,13 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-const RegisterActivities = ({ formData, setFormData }) => {
+const RegisterActivities = ({
+  formData,
+  setFormData,
+  activities,
+  setActivities,
+}) => {
   const [total, setTotal] = useState(0);
-  const [activities, setActivities] = useState([
-    {
-      name: "main",
-      time: "",
-      cost: 200,
-      title: "Main Conference",
-      checked: false,
-      disabled: false,
-    },
-    {
-      name: "frameworks",
-      time: "Tuesday 9am-12pm",
-      cost: 100,
-      title: "JavaScript Frameworks Workshop",
-      checked: false,
-      disabled: false,
-    },
-    {
-      name: "libraries",
-      time: "Tuesday 1pm-4pm",
-      cost: 100,
-      title: "JavaScript Libraries Workshop",
-      checked: false,
-      disabled: false,
-    },
-    {
-      name: "express",
-      time: "Tuesday 9am-12pm",
-      cost: 100,
-      title: "Express Workshop",
-      checked: false,
-      disabled: false,
-    },
-    {
-      name: "node",
-      time: "Tuesday 1pm-4pm",
-      cost: 100,
-      title: "Node.js Workshop",
-      checked: false,
-      disabled: false,
-    },
-    {
-      name: "buildTools",
-      time: "Wednesday 9am-12pm",
-      cost: 100,
-      title: "Build tools Workshop",
-      checked: false,
-      disabled: false,
-    },
-    {
-      name: "npm",
-      time: "Wednesday 1pm-4pm",
-      cost: 100,
-      title: "npm Workshop",
-      checked: false,
-      disabled: false,
-    },
-  ]);
 
   const handleChange = (index) => {
     const updatedActivities = [...activities];
@@ -120,7 +67,7 @@ const RegisterActivities = ({ formData, setFormData }) => {
               name={activity.name}
               data-day-and-time={activity.time}
               data-cost={activity.cost}
-              checked={activity.checked}
+              checked={formData[activity.name]}
               disabled={activity.disabled}
               onChange={() => handleChange(index)}
             />
@@ -151,6 +98,8 @@ const RegisterActivities = ({ formData, setFormData }) => {
 RegisterActivities.propTypes = {
   formData: PropTypes.object.isRequired,
   setFormData: PropTypes.func.isRequired,
+  activities: PropTypes.array.isRequired,
+  setActivities: PropTypes.func.isRequired,
 };
 
 export default RegisterActivities;
