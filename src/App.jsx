@@ -100,6 +100,18 @@ function App() {
   return (
     <>
       <main>
+        <ul className="progress">
+          <li>Basic</li>
+          <li>T-Shirt</li>
+          <li>Activities</li>
+          <li>Payment</li>
+        </ul>
+        <div className="progress-container">
+          <div
+            className="progress-bar"
+            style={{ width: `${currentStep * 25}%` }}
+          ></div>
+        </div>
         <AnimatePresence mode="wait">
           <motion.div
             key={currentStep}

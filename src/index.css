@@ -210,3 +210,24 @@ select {
   cursor: not-allowed;
   opacity: 0.5;
 }
+ul.progress {
+  display: grid;
+  list-style: none;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 0;
+}
+.progress li {
+  text-align: center;
+}
+.progress-container {
+  width: 100%;
+  background-color: var(--shark-200);
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.progress-bar {
+  height: 5px;
+  background-color: var(--electric-violet-800);
+  transition: width 0.3s ease-in-out;
+}
