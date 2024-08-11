@@ -1,7 +1,16 @@
+import { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import { motion, AnimatePresence } from "framer-motion";
 
 const PaymentInfo = ({ formData, setFormData }) => {
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+
   return (
     <fieldset className="payment-methods">
       <legend>Payment Info</legend>
@@ -10,11 +19,14 @@ const PaymentInfo = ({ formData, setFormData }) => {
         <label htmlFor="payment">I&apos;m going to pay with</label>
         <div className="select-arrow">
           <select
+            ref={inputRef}
             id="payment"
             name="user-payment"
-            onChange={(e) =>
-              setFormData({ ...formData, paymentType: e.target.value })
-            }
+            onChange={(e) => {
+              setFormData({ ...formData, paymentType: e.target.value });
+              document.getElementById("payment-hint").style.visibility =
+                "hidden";
+            }}
             value={formData.paymentType}
           >
             <option value="select method" hidden="">
@@ -25,6 +37,9 @@ const PaymentInfo = ({ formData, setFormData }) => {
             <option value="bitcoin">Bitcoin</option>
           </select>
           <i className="fa-solid fa-angle-down"></i>
+        </div>
+        <div id="payment-hint" className="payment-hint hint">
+          You must select a payment method
         </div>
       </div>
 
@@ -41,73 +56,72 @@ const PaymentInfo = ({ formData, setFormData }) => {
             }}
             transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.69] }}
           >
+            <span className="required">All fields required</span>
             <div id="credit-card" className="credit-card">
-              <div className="credit-card-box">
-                <div className="num-box">
-                  <label htmlFor="cc-num">
-                    Card Number <span className="asterisk">*</span>
-                  </label>
-                  <input
-                    id="cc-num"
-                    name="user-cc-num"
-                    type="text"
-                    className="error-border"
-                    onChange={(e) =>
-                      setFormData({ ...formData, ccNum: e.target.value })
-                    }
-                    value={formData.ccNum}
-                  />
-                  <span id="cc-hint" className="cc-hint hint">
-                    Credit card number must be between 13 - 16 digits
-                  </span>
-                </div>
+              <div className="num-box">
+                <label htmlFor="cc-num">
+                  <span>Card Number</span>
+                </label>
+                <input
+                  id="cc-num"
+                  name="user-cc-num"
+                  type="text"
+                  onChange={(e) =>
+                    setFormData({ ...formData, ccNum: e.target.value })
+                  }
+                  value={formData.ccNum}
+                />
+                <span id="cc-hint" className="cc-hint hint">
+                  Card number must be between 13 - 16 digits
+                </span>
 
-                <div className="zip-box">
-                  <label htmlFor="zip">
-                    Zip Code <span className="asterisk">*</span>
-                  </label>
-                  <input
-                    id="zip"
-                    name="user-zip"
-                    type="text"
-                    className="error-border"
-                    onChange={(e) =>
-                      setFormData({ ...formData, zip: e.target.value })
-                    }
-                    value={formData.zip}
-                  />
-                  <span id="zip-hint" className="zip-hint hint">
-                    Zip Code must be 5 digits
-                  </span>
-                </div>
+                <div className="zip-cvv">
+                  <div className="zip-box">
+                    <label htmlFor="zip">
+                      <span>Zip Code</span>
+                    </label>
+                    <input
+                      id="zip"
+                      name="user-zip"
+                      type="text"
+                      onChange={(e) =>
+                        setFormData({ ...formData, zip: e.target.value })
+                      }
+                      value={formData.zip}
+                    />
+                    <span id="zip-hint" className="zip-hint hint">
+                      Zip must be 5 digits
+                    </span>
+                  </div>
 
-                <div className="cvv-box">
-                  <label htmlFor="cvv">
-                    CVV <span className="asterisk">*</span>
-                  </label>
-                  <input
-                    id="cvv"
-                    name="user-cvv"
-                    type="text"
-                    className="error-border"
-                    onChange={(e) =>
-                      setFormData({ ...formData, ccv: e.target.value })
-                    }
-                    value={formData.ccv}
-                  />
-                  <span id="cvv-hint" className="cvv-hint hint">
-                    CVV must be 3 digits
-                  </span>
+                  <div className="cvv-box">
+                    <label htmlFor="cvv">
+                      <span>CVV</span>
+                    </label>
+                    <input
+                      id="cvv"
+                      name="user-cvv"
+                      type="text"
+                      onChange={(e) =>
+                        setFormData({ ...formData, cvv: e.target.value })
+                      }
+                      value={formData.cvv}
+                    />
+                    <span id="cvv-hint" className="cvv-hint hint">
+                      CVV must be 3 digits
+                    </span>
+                  </div>
                 </div>
 
                 <div className="expiration-box">
                   <div className="month-box">
-                    <label htmlFor="exp-month">Expiration Date</label>
+                    <label htmlFor="exp-month">
+                      <span>Expiration Date</span>
+                    </label>
                     <div className="select-arrow">
                       <select
                         id="exp-month"
                         name="user-exp-month"
-                        className="error-border"
                         onChange={(e) =>
                           setFormData({ ...formData, expMonth: e.target.value })
                         }
@@ -132,12 +146,13 @@ const PaymentInfo = ({ formData, setFormData }) => {
                   </div>
 
                   <div className="year-box">
-                    <label htmlFor="exp-year">Expiration Year</label>
+                    <label htmlFor="exp-year">
+                      <span>Expiration Year</span>
+                    </label>
                     <div className="select-arrow">
                       <select
                         id="exp-year"
                         name="user-exp-year"
-                        className="error-border"
                         onChange={(e) =>
                           setFormData({ ...formData, expYear: e.target.value })
                         }

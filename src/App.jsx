@@ -21,6 +21,7 @@ function App() {
     express: false,
     buildTools: false,
     npm: false,
+    totalCost: 0,
     paymentType: "",
     expMonth: "",
     expYear: "",
@@ -89,12 +90,100 @@ function App() {
   ]);
   const [currentStep, setCurrentStep] = useState(1);
 
+  const emailValidator = () => {
+    const emailInput = document.getElementById("email");
+    const emailHint = document.getElementById("email-hint");
+    const emailMissingAt = /^[^@]+[^@.]+\.[a-z]+$/i.test(emailInput.value);
+    if (emailMissingAt) {
+      emailHint.innerHTML = `Your email is missing the '@'`;
+    }
+    const emailMissingPeriod = /^[^@]+@[^@.]+[a-z]+$/i.test(emailInput.value);
+    if (emailMissingPeriod) {
+      emailHint.innerHTML = `Your email is missing the '.'`;
+    }
+    const emailIsValid = /^[^@]+@[^@.]+\.[a-z]+$/i.test(emailInput.value);
+    return emailIsValid;
+  };
+
   const handleNext = () => {
+    const nameHint = document.getElementById("name-hint");
+    const nameInput = document.getElementById("name");
+    const emailHint = document.getElementById("email-hint");
+    const emailInput = document.getElementById("email");
+    if (currentStep === 1 && (!formData.name || !emailValidator())) {
+      if (!formData.name) {
+        nameHint.style.visibility = "visible";
+        nameInput.classList.add("error-border");
+        nameInput.focus();
+        return;
+      } else {
+        nameHint.style.visibility = "hidden";
+        nameInput.classList.remove("error-border");
+      }
+      if (!emailValidator()) {
+        emailHint.style.visibility = "visible";
+        emailInput.classList.add("error-border");
+        emailInput.focus();
+        return;
+      } else {
+        emailHint.style.visibility = "hidden";
+        emailInput.classList.remove("error-border");
+      }
+    } else if (currentStep === 3 && formData.totalCost === 0) {
+      document.getElementById("activities-hint").style.visibility = "visible";
+      return;
+    }
     setCurrentStep(currentStep + 1);
   };
 
   const handlePrevious = () => {
     setCurrentStep(currentStep - 1);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (
+      formData.paymentType === "" ||
+      formData.paymentType === "select method"
+    ) {
+      document.getElementById("payment-hint").style.visibility = "visible";
+      document.getElementById("payment").classList.add("error-border");
+      document.getElementById("payment").focus();
+      return;
+    } else if (formData.paymentType === "credit-card") {
+      const ccHint = document.getElementById("cc-hint");
+      const ccNum = document.getElementById("cc-num");
+      const zip = document.getElementById("zip");
+      const cvv = document.getElementById("cvv");
+      if (formData.ccNum.length < 13 || formData.ccNum.length > 16) {
+        ccHint.style.visibility = "visible";
+        ccNum.classList.add("error-border");
+        ccNum.focus();
+        return;
+      } else {
+        ccHint.style.visibility = "hidden";
+        ccNum.classList.remove("error-border");
+      }
+      if (formData.zip.length !== 5) {
+        document.getElementById("zip-hint").style.visibility = "visible";
+        zip.classList.add("error-border");
+        zip.focus();
+        return;
+      } else {
+        document.getElementById("zip-hint").style.visibility = "hidden";
+        zip.classList.remove("error-border");
+      }
+      if (formData.cvv.length !== 3) {
+        document.getElementById("cvv-hint").style.visibility = "visible";
+        cvv.classList.add("error-border");
+        cvv.focus();
+        return;
+      } else {
+        document.getElementById("cvv-hint").style.visibility = "hidden";
+        cvv.classList.remove("error-border");
+      }
+    }
+    console.log(formData);
   };
 
   return (
@@ -157,7 +246,12 @@ function App() {
           >
             Next
           </button>
-          <button className="submit" type="submit" hidden={currentStep !== 4}>
+          <button
+            className="submit"
+            type="submit"
+            onClick={handleSubmit}
+            hidden={currentStep !== 4}
+          >
             Submit
           </button>
         </div>

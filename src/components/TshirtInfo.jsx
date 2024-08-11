@@ -1,6 +1,15 @@
+import { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 
 const TshirtInfo = ({ formData, setFormData }) => {
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+
   return (
     <fieldset className="shirts">
       <legend>T-Shirt Info</legend>
@@ -10,6 +19,7 @@ const TshirtInfo = ({ formData, setFormData }) => {
           <label htmlFor="size">Size</label>
           <div className="select-arrow">
             <select
+              ref={inputRef}
               id="size"
               name="user-size"
               onChange={(e) =>

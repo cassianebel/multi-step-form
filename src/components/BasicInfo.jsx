@@ -1,17 +1,28 @@
+import { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import { motion, AnimatePresence } from "framer-motion";
 
 const PersonInfo = ({ formData, setFormData }) => {
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+
   return (
     <fieldset className="basic-info">
       <legend>Basic Info</legend>
 
-      <label htmlFor="name">Name</label>
+      <label htmlFor="name">
+        <span>Name</span> <span className="required">required</span>
+      </label>
       <input
+        ref={inputRef}
         type="text"
         id="name"
         name="user-name"
-        className="error-border"
         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
         value={formData.name}
       />
@@ -19,12 +30,13 @@ const PersonInfo = ({ formData, setFormData }) => {
         Name field cannot be blank
       </span>
 
-      <label htmlFor="email">Email Address</label>
+      <label htmlFor="email">
+        <span>Email Address</span> <span className="required">required</span>
+      </label>
       <input
         type="email"
         id="email"
         name="user-email"
-        className="error-border"
         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
         value={formData.email}
       />

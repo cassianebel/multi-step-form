@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 
 const RegisterActivities = ({
@@ -7,24 +7,31 @@ const RegisterActivities = ({
   activities,
   setActivities,
 }) => {
-  const [total, setTotal] = useState(0);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
   const handleChange = (index) => {
     const updatedActivities = [...activities];
     updatedActivities[index].checked = !updatedActivities[index].checked;
-
-    // Update form data
-    setFormData({
-      ...formData,
-      [updatedActivities[index].name]: updatedActivities[index].checked,
-    });
 
     // Calculate new total cost
     const newTotal = updatedActivities.reduce(
       (sum, activity) => (activity.checked ? sum + activity.cost : sum),
       0
     );
-    setTotal(newTotal);
+
+    // Update form data
+    const updatedFormData = {
+      ...formData,
+      [updatedActivities[index].name]: updatedActivities[index].checked,
+      totalCost: newTotal,
+    };
+    setFormData(updatedFormData);
 
     // Handle disabling conflicting activities
     const selectedTime = updatedActivities[index].time;
@@ -52,7 +59,6 @@ const RegisterActivities = ({
   return (
     <fieldset id="activities" className="activities">
       <legend>Register for Activities</legend>
-
       <div id="activities-box" className="activities-box error-border">
         {activities.map((activity, index) => (
           <label
@@ -62,6 +68,7 @@ const RegisterActivities = ({
           >
             <i className="fa-solid fa-check"></i>
             <input
+              ref={index === 0 ? inputRef : null}
               id={activity.name}
               type="checkbox"
               name={activity.name}
@@ -86,7 +93,7 @@ const RegisterActivities = ({
         ))}
       </div>
       <p id="activities-cost" className="activities-cost">
-        Total: ${total}
+        Total: ${formData.totalCost}
       </p>
       <p id="activities-hint" className="activities-hint hint">
         Choose at least one activity

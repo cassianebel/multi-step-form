@@ -21,6 +21,7 @@
   --shark-800: #414449;
   --shark-900: #393b40;
   --shark-950: #282a2e;
+  --shocking-pink-700: #bf0c94;
 }
 
 * {
@@ -61,8 +62,9 @@ legend {
   font-size: 1.3rem;
 }
 label {
-  display: block;
-  margin: 20px 0 5px 10px;
+  display: flex;
+  margin: 20px 10px 5px 10px;
+  justify-content: space-between;
 }
 input,
 textarea {
@@ -104,10 +106,19 @@ select {
   max-width: 400px;
   margin: 20px;
 }
+.required {
+  color: var(--shark-400);
+  font-size: 0.9rem;
+  margin-left: 10px;
+}
 .hint {
   visibility: hidden;
   margin-left: 10px;
   font-size: 0.9rem;
+  color: var(--shocking-pink-700);
+}
+.error-border {
+  border-color: var(--shocking-pink-700);
 }
 .nav-buttons {
   display: flex;
@@ -204,6 +215,12 @@ select {
   font-size: 1.1rem;
   margin-top: 40px;
   text-align: center;
+}
+.expiration-box,
+.zip-cvv {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
 }
 .disabled {
   pointer-events: none;
