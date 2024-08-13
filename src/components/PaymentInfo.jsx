@@ -116,7 +116,7 @@ const PaymentInfo = ({ formData, setFormData }) => {
                 <div className="expiration-box">
                   <div className="month-box">
                     <label htmlFor="exp-month">
-                      <span>Expiration Date</span>
+                      <span>Expiration Month</span>
                     </label>
                     <div className="select-arrow">
                       <select
@@ -127,7 +127,7 @@ const PaymentInfo = ({ formData, setFormData }) => {
                         }
                         value={formData.expMonth}
                       >
-                        <option hidden="">Select Date</option>
+                        <option hidden="">Select Month</option>
                         <option value="1">01 - January</option>
                         <option value="2">02 - February</option>
                         <option value="3">03 - March</option>
@@ -143,6 +143,9 @@ const PaymentInfo = ({ formData, setFormData }) => {
                       </select>
                       <i className="fa-solid fa-angle-down"></i>
                     </div>
+                    <span id="exp-hint" className="exp-hint hint">
+                      Must chose an expiration date
+                    </span>
                   </div>
 
                   <div className="year-box">
@@ -167,6 +170,9 @@ const PaymentInfo = ({ formData, setFormData }) => {
                       </select>
                       <i className="fa-solid fa-angle-down"></i>
                     </div>
+                    <span id="exp-year-hint" className="exp-year-hint hint">
+                      Must chose an expiration year
+                    </span>
                   </div>
                 </div>
               </div>

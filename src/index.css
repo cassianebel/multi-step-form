@@ -112,6 +112,7 @@ select {
   margin-left: 10px;
 }
 .hint {
+  display: block;
   visibility: hidden;
   margin-left: 10px;
   font-size: 0.9rem;
@@ -219,7 +220,6 @@ select {
 .expiration-box,
 .zip-cvv {
   display: flex;
-  justify-content: space-between;
   gap: 10px;
 }
 .disabled {
@@ -247,4 +247,7 @@ ul.progress {
   height: 5px;
   background-color: var(--electric-violet-800);
   transition: width 0.3s ease-in-out;
+}
+.success {
+  text-align: center;
 }

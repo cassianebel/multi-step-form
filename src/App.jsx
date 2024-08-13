@@ -182,24 +182,45 @@ function App() {
         document.getElementById("cvv-hint").style.visibility = "hidden";
         cvv.classList.remove("error-border");
       }
+      if (formData.expMonth === "" || formData.expMonth === "Select Month") {
+        document.getElementById("exp-hint").style.visibility = "visible";
+        document.getElementById("exp-month").classList.add("error-border");
+        document.getElementById("exp-month").focus();
+        return;
+      } else {
+        document.getElementById("exp-hint").style.visibility = "hidden";
+        document.getElementById("exp-month").classList.remove("error-border");
+      }
+      if (formData.expYear === "" || formData.expYear === "Select Year") {
+        document.getElementById("exp-year-hint").style.visibility = "visible";
+        document.getElementById("exp-year").classList.add("error-border");
+        document.getElementById("exp-year").focus();
+        return;
+      } else {
+        document.getElementById("exp-year-hint").style.visibility = "hidden";
+        document.getElementById("exp-year").classList.remove("error-border");
+      }
     }
+    setCurrentStep(currentStep + 1);
     console.log(formData);
   };
 
   return (
     <>
       <main>
-        <ul className="progress">
-          <li>Basic</li>
-          <li>T-Shirt</li>
-          <li>Activities</li>
-          <li>Payment</li>
-        </ul>
-        <div className="progress-container">
-          <div
-            className="progress-bar"
-            style={{ width: `${currentStep * 25}%` }}
-          ></div>
+        <div hidden={currentStep === 5}>
+          <ul className="progress">
+            <li>Basic</li>
+            <li>T-Shirt</li>
+            <li>Activities</li>
+            <li>Payment</li>
+          </ul>
+          <div className="progress-container">
+            <div
+              className="progress-bar"
+              style={{ width: `${currentStep * 25}%` }}
+            ></div>
+          </div>
         </div>
         <AnimatePresence mode="wait">
           <motion.div
@@ -226,6 +247,9 @@ function App() {
             {currentStep === 4 && (
               <PaymentInfo formData={formData} setFormData={setFormData} />
             )}
+            {currentStep === 5 && (
+              <h2 className="success">Congrats! You made it to the End!</h2>
+            )}
           </motion.div>
         </AnimatePresence>
 
@@ -234,7 +258,7 @@ function App() {
             className="previous"
             type="button"
             onClick={handlePrevious}
-            hidden={currentStep === 1}
+            hidden={currentStep === 1 || currentStep === 5}
           >
             Previous
           </button>
@@ -242,7 +266,7 @@ function App() {
             className="next"
             type="button"
             onClick={handleNext}
-            hidden={currentStep === 4}
+            hidden={currentStep >= 4}
           >
             Next
           </button>
