@@ -209,7 +209,7 @@ function App() {
     <>
       <main>
         <div hidden={currentStep === 5}>
-          <ul className="progress">
+          <ul className="progress" aria-hidden>
             <li>Basic</li>
             <li>T-Shirt</li>
             <li>Activities</li>

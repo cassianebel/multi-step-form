@@ -16,7 +16,7 @@ const TshirtInfo = ({ formData, setFormData }) => {
 
       <div className="shirt-div-box">
         <div id="shirt-sizes" className="shirt-sizes">
-          <label htmlFor="size">Size</label>
+          <label htmlFor="size">T-shirt Size</label>
           <div className="select-arrow">
             <select
               ref={inputRef}
@@ -38,7 +38,7 @@ const TshirtInfo = ({ formData, setFormData }) => {
         </div>
 
         <div id="shirt-designs" className="shirt-designs">
-          <label htmlFor="design">Design</label>
+          <label htmlFor="design">T-shirt Design</label>
           <div className="select-arrow">
             <select
               id="design"
@@ -48,7 +48,7 @@ const TshirtInfo = ({ formData, setFormData }) => {
               }
               value={formData.design}
             >
-              <option hidden="">Select Theme</option>
+              <option hidden="">Select T-shirt Theme</option>
               <option value="js puns">Theme - JS Puns</option>
               <option value="heart js">Theme - I ♥ JS</option>
             </select>
@@ -57,7 +57,7 @@ const TshirtInfo = ({ formData, setFormData }) => {
         </div>
 
         <div id="shirt-colors" className="shirt-colors">
-          <label htmlFor="color">Color</label>
+          <label htmlFor="color">T-shirt Color</label>
           <div className="select-arrow">
             <select
               id="color"
@@ -65,9 +65,8 @@ const TshirtInfo = ({ formData, setFormData }) => {
                 setFormData({ ...formData, color: e.target.value })
               }
               value={formData.color}
-              disabled={formData.design === "Select Theme"}
+              disabled={formData.design === "Select T-shirt Theme"}
             >
-              <option defaultValue>Select a design theme above</option>
               <option
                 data-theme="js puns"
                 value="cornflowerblue"

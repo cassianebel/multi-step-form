@@ -89,6 +89,13 @@ const RegisterActivities = ({
                 <span className="activity-cost">${activity.cost}</span>
               </div>
             </div>
+            {activity.disabled && (
+              <p className="sr-only">
+                This activity is disabled because it's time conflicts with
+                another workshop you have chosen. Uncheck the conflicting
+                workshop to enable this one.
+              </p>
+            )}
           </label>
         ))}
       </div>
